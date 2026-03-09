@@ -1,0 +1,18 @@
+package j$.util.stream;
+
+import java.security.AccessController;
+import java.security.PrivilegedAction;
+
+/* JADX INFO: loaded from: classes3.dex */
+abstract class Tripwire {
+    static final boolean ENABLED = ((Boolean) AccessController.doPrivileged(new PrivilegedAction() { // from class: j$.util.stream.Tripwire$$ExternalSyntheticLambda0
+        @Override // java.security.PrivilegedAction
+        public final Object run() {
+            return Boolean.valueOf(Boolean.getBoolean("org.openjdk.java.util.stream.tripwire"));
+        }
+    })).booleanValue();
+
+    static void trip(Class cls, String str) {
+        throw new UnsupportedOperationException(cls + " tripwire tripped but logging not supported: " + str);
+    }
+}

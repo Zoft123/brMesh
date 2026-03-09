@@ -1,0 +1,15 @@
+package com.getkeepsafe.relinker.elf;
+
+import com.getkeepsafe.relinker.elf.Elf;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+/* JADX INFO: loaded from: classes.dex */
+public class Section64Header extends Elf.SectionHeader {
+    public Section64Header(ElfParser elfParser, Elf.Header header, int i) throws IOException {
+        ByteBuffer byteBufferAllocate = ByteBuffer.allocate(8);
+        byteBufferAllocate.order(header.bigEndian ? ByteOrder.BIG_ENDIAN : ByteOrder.LITTLE_ENDIAN);
+        this.info = elfParser.readWord(byteBufferAllocate, header.shoff + ((long) (i * header.shentsize)) + 44);
+    }
+}
